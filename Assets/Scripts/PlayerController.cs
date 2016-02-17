@@ -3,59 +3,97 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	public Rigidbody2D rb;
-	public float speed = 5;
-	public float maxSpeed = 15;
-	public float jumpForce = 300f;	
-	public bool isJumping = false;
-	private Vector2 initPosition;
-	public float dist = 0;
+	public float speed;
+	public float speedMultiplyer;
+	private float speedStore;
+
+	public float speedIncreaseMilestone;
+	private float speedMilestoneCount;
+	private float speedMilestoneCountStore;
+	private float speedIncreaseMilestoneStore;
+
+
+
+	public float jumpforce;
+	public float jumpTime;
+	private float jumpTimeCounter;
+
+	private Rigidbody2D RB2D;
+
+	public bool grounded;
+	public LayerMask ground;
+	public Transform groundCheck;
+	public float groundCheckRadius;
+
+	//private Collider2D playerCollider;
+	private Animator snowBallAnimations;
+	public GameManager theGameManager;
 
 	// Use this for initialization
 	void Start () {
-		rb = GetComponent<Rigidbody2D>();
-		initPosition = transform.position;
-	}
+		RB2D = GetComponent<Rigidbody2D> ();
 
+		//playerCollider = GetComponent<Collider2D> ();
+
+		snowBallAnimations = GetComponent<Animator> ();
+
+		jumpTimeCounter = jumpTime;
+
+		speedMilestoneCount = speedIncreaseMilestone;
+
+		speedStore = speed;
+
+		speedMilestoneCountStore = speedMilestoneCount;
+
+		speedIncreaseMilestoneStore = speedIncreaseMilestone;
+
+	
+	}
+	
 	// Update is called once per frame
 	void Update () {
 
-		DistanceTracking.distance = Vector2.Distance(initPosition, transform.position);
+		//grounded = Physics2D.IsTouchingLayers (playerCollider, ground);
 
+		grounded = Physics2D.OverlapCircle (groundCheck.position, groundCheckRadius, ground);
 
-		//stop adding more speed when jumping
-		if(isJumping){
-			rb.AddForce(new Vector2(speed,0));
+		if (transform.position.x > speedMilestoneCount) {
 
-		}else if(rb.velocity.magnitude > 0) {
-			BecomeBigger();
+			speedMilestoneCount += speedIncreaseMilestone;
+			speedIncreaseMilestone = speedIncreaseMilestone * speedMultiplyer;
+			speed = speed*speedMultiplyer;
 		}
 
-		//advoid jumping more than once
-		if (Input.GetButtonDown("Jump") && !isJumping){
-			rb.AddForce(new Vector2(0f,jumpForce));
-			isJumping = true;
-		}else if (rb.velocity.magnitude > maxSpeed){ // stop speeding up at a certain point
-			rb.velocity = rb.velocity.normalized*maxSpeed;
-		}else if(Input.GetKey(KeyCode.A)){
-			rb.velocity = rb.velocity.normalized*(maxSpeed-10);
-			rb.AddForce(new Vector2(speed,1f)); // after reduce the magnitude, this code will make the magnitude goes up again
+		RB2D.velocity = new Vector2 (speed, RB2D.velocity.y);
+
+		if (Input.GetButtonDown("Jump")) {
+			if(grounded){
+				RB2D.velocity = new Vector2(RB2D.velocity.x, jumpforce);
+			}
 		}
-			
+		if (Input.GetButton ("Jump")) {
+			if(jumpTimeCounter > 0 )
+			{
+				RB2D.velocity = new Vector2(RB2D.velocity.x, jumpforce);
+				jumpTimeCounter -= Time.deltaTime;
+			}
+		}
+
+		if (Input.GetButtonUp ("Jump")) {
+			jumpTimeCounter =0;
+		}
+		if (grounded) {
+			jumpTimeCounter=jumpTime;
+		}
+		snowBallAnimations.SetFloat ("Speed", RB2D.velocity.x);
+		snowBallAnimations.SetBool ("Grounded", grounded);
 	}
 
-	void OnCollisionEnter2D(Collision2D col){
-		if(col.gameObject.tag == "Ground"){
-			isJumping = false;
+	void OnCollisionEnter2D(Collision2D other){
+		if (other.gameObject.tag == "Killbox") {
+			theGameManager.RestartGame();
+			speedMilestoneCount = speedMilestoneCountStore;
+			speedIncreaseMilestone = speedIncreaseMilestoneStore;
 		}
-	}
-	void OnCollisionExit2D(Collision2D col){
-		if(col.gameObject.tag == "Ground"){
-			isJumping = true;
-		}
-	}
-
-	void BecomeBigger(){
-		transform.localScale += new Vector3(0.001f,0.001f,0);
 	}
 }
