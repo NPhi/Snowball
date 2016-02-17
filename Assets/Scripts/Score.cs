@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-	public static int score;					// The player's score.
+	public static float score;					// The player's score.
 
 
 	//private PlayerController playerControl;	// Reference to the player control script.

@@ -8,14 +8,20 @@ public class PlayerController : MonoBehaviour {
 	public float maxSpeed = 15;
 	public float jumpForce = 300f;	
 	public bool isJumping = false;
+	private Vector2 initPosition;
+	public float dist = 0;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+		initPosition = transform.position;
 	}
 
 	// Update is called once per frame
 	void Update () {
+
+		DistanceTracking.distance = Vector2.Distance(initPosition, transform.position);
+
 
 		//stop adding more speed when jumping
 		if(isJumping){

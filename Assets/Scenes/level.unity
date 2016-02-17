@@ -311,6 +311,84 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 60244341}
+--- !u!1 &100358490 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 127462, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+  m_PrefabInternal: {fileID: 102541567}
+--- !u!114 &100358492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100358490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6524f0de80b5041c4af0468adbfc9545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rocket: {fileID: 5066128, guid: e3b771aa0796e4f34adacf7ab770146e, type: 2}
+  speed: 20
+  shotDelay: 2
+  timer: 0
+  shotAngle: 30
+--- !u!1001 &102541567
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 407306, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 12.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 407306, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -6.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 407306, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407306, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407306, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407306, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407306, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 407306, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 127462, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+      propertyPath: m_Name
+      value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 449586, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.4506583
+      objectReference: {fileID: 0}
+    - target: {fileID: 449586, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.89269656
+      objectReference: {fileID: 0}
+    - target: {fileID: 449586, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.43000007
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 15eaef9b0360f4374bd6cf16595fab56, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &136865943 stripped
 Transform:
   m_PrefabParentObject: {fileID: 485862, guid: 70041bc35b2e9574b9bc27418cf5cc5f, type: 2}
@@ -4860,6 +4938,7 @@ MonoBehaviour:
   maxSpeed: 30
   jumpForce: 300
   isJumping: 0
+  dist: 0
 --- !u!1 &1234111313
 GameObject:
   m_ObjectHideFlags: 0
@@ -5107,6 +5186,7 @@ GameObject:
   - 224: {fileID: 1302979484}
   - 222: {fileID: 1302979486}
   - 114: {fileID: 1302979485}
+  - 114: {fileID: 1302979487}
   m_Layer: 5
   m_Name: DistanceText
   m_TagString: Untagged
@@ -5157,7 +5237,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -5170,6 +5250,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1302979483}
+--- !u!114 &1302979487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1302979483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4cffe20e5fae4b708ddc8888ce51080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1341183077
 GameObject:
   m_ObjectHideFlags: 0

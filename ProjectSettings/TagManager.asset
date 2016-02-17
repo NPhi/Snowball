@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Score
+  - Bullet
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class DistanceTracking : MonoBehaviour {
 
-	public static int distance;
+	public static float distance;
 
 	// Use this for initialization
 	void Start () {
