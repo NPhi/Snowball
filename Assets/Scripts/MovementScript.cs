@@ -44,12 +44,12 @@ public class MovementScript : MonoBehaviour {
 			doublejump = false;
 		}
 
-		if(Input.GetKeyDown(KeyCode.Space) && onFloor)
+		if(Input.GetKeyDown(KeyCode.W) && onFloor)
 		{
 			GetComponent<Rigidbody2D>().velocity = new Vector3(0, jump);
 
 		}
-		if (Input.GetKeyDown(KeyCode.Space) && !onFloor && !doublejump)
+		if (Input.GetKeyDown(KeyCode.W) && !onFloor && !doublejump)
 		{
 			GetComponent<Rigidbody2D>().velocity = new Vector3(0, jump);
 			doublejump = true;

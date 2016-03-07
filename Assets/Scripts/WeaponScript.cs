@@ -68,8 +68,10 @@ public class WeaponScript : MonoBehaviour
 			MoveScript move = shotTransform.gameObject.GetComponent<MoveScript>();
 			if (move != null)
 			{
-				move.direction = - this.transform.right;
-			}
+				move.direction = isEnemy ? - this.transform.right : this.transform.right;
+			} 
+
+		
 		}
 	}
 

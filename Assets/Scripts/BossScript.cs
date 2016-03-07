@@ -166,15 +166,15 @@ public class BossScript : MonoBehaviour
 		ShotScript shot = otherCollider2D.gameObject.GetComponent<ShotScript>();
 		if (shot != null)
 		{
-			if (shot.isEnemyShot == false)
-			{
+			//if (shot.isEnemyShot == false)
+			//{
 				// Stop attacks and start moving awya
-				aiCooldown = Random.Range(minAttackCooldown, maxAttackCooldown);
-				isAttacking = false;
+//				aiCooldown = Random.Range(minAttackCooldown, maxAttackCooldown);
+//				isAttacking = false;
 
 				// Change animation
 				//animator.SetTrigger("Hit");
-			}
+			//}
 		}
 	}
 
